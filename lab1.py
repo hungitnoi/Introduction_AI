@@ -23,37 +23,33 @@ def convert_graph_weight(a):
                 adjList[i].append((j,a[i][j]))
     return adjList
 
-def BFS(graph,start,end):
-    visited = []
+def BFS(graph, start, end):
+    visited = set()
     frontier = Queue()
     frontier.put(start)
-    visited.append(start)
-    parent=dict()
-    parent[start]=None
-    path_found=False
-    while True:
-        if frontier.empty():
-            print("No way Exception")
+    visited.add(start)
+    parent = {start: None}
+    path_found = False
+
+    while not frontier.empty():
+        current_node = frontier.get()
+        if current_node == end:
+            path_found = True
             break
-        current_node=frontier.get()
-        visited.append(current_node)
-        if current_node==end:
-            path_found=True
-            
         for node in graph[current_node]:
             if node not in visited:
                 frontier.put(node)
                 parent[node] = current_node
-                visited.append(node)
-    path = []
-    if path_found:
-        path.append(end)
-        while parent[end] is not None:
-            path.append(parent[end])
-            end=parent[end]
-        path.reverse()
-    return path
+                visited.add(node)
 
+    if path_found:
+        path = []
+        while current_node is not None:
+            path.append(current_node)
+            current_node = parent[current_node]
+        path.reverse()
+        return path
+   
 def DFS(graph,start,end):
     visited = []
     frontier = []
@@ -64,13 +60,12 @@ def DFS(graph,start,end):
     path_found=False
     while True:
         if frontier==[]: 
-            print("No way Exception")
-            break
+            raise Exception("No way Exception")
         current_node = frontier.pop()
         visited.append(current_node)
         if current_node == end:
             path_found = True
-            
+            break
         for node in graph[current_node]:
             if node not in visited:
                 frontier.append(node)
