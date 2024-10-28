@@ -41,9 +41,9 @@ def BFS(graph, start, end):
                 frontier.put(node)
                 parent[node] = current_node
                 visited.add(node)
-
+    path = []
     if path_found:
-        path = []
+        
         while current_node is not None:
             path.append(current_node)
             current_node = parent[current_node]
