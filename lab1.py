@@ -39,7 +39,7 @@ def BFS(graph,start,end):
         visited.append(current_node)
         if current_node==end:
             path_found=True
-            break
+            
         for node in graph[current_node]:
             if node not in visited:
                 frontier.put(node)
@@ -70,7 +70,7 @@ def DFS(graph,start,end):
         visited.append(current_node)
         if current_node == end:
             path_found = True
-            break
+            
         for node in graph[current_node]:
             if node not in visited:
                 frontier.append(node)
@@ -119,8 +119,8 @@ def UCS(graph,start,end):
     return current_w, path
 if __name__ == "__main__":
     # Read Input.txt and InputUCS.txt files
-    file_1 = open(r"F:\Học tập\WORKSPACE\AI\Input.txt", "r")
-    file_2 = open(r"F:\Học tập\WORKSPACE\AI\InputUCS.txt", "r")
+    file_1 = open("Input.txt", "r")
+    file_2 = open("InputUCS.txt", "r")
 
     size_1, start_1, goal_1, matrix_1 = read_txt(file_1)
     size_2, start_2, goal_2, matrix_2 = read_txt(file_2)
